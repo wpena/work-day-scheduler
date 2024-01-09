@@ -7,17 +7,18 @@ $(function () {
     // Checks and updates time block colors
     function updateTimeBlock() {
 
-        let currentHour = dayjs().hour();
+        const currentHour = dayjs().hour();
 
         $('.time-block').each(function () {
             // Splits to get id
-            let hourBlock = parseInt($(this).attr('id').split('-')[1]);
+            const hourBlock = parseInt($(this).attr('id').split('-')[1]);
 
             // Compares the hour id to the current time
             if (hourBlock < currentHour) {
+                $(this).removeClass('present future');
                 $(this).addClass('past');
             } else if (hourBlock === currentHour) {
-                $(this).removeClass('past');
+                $(this).removeClass('past future');
                 $(this).addClass('present');
             } else {
                 $(this).removeClass('past present');
@@ -26,5 +27,21 @@ $(function () {
         });
     }
 
+    // Calls the functions
     updateTimeBlock();
+    saveEvent();
+
+    function saveEvent(){
+        // Listens for when save button is clicked
+        $('.saveBtn').on('click', function() {
+            // Takes the value after the split
+            const hour = $(this).parent().attr('id').split('-')[1];
+            const description = $(this).siblings('.description').val();
+
+            // Sets and stores hour key and description value in local storage
+            localStorage.setItem(hour, description);
+        })
+
+    }
+
 });
