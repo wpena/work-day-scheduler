@@ -27,9 +27,8 @@ $(function () {
         });
     }
 
-    // Calls the functions
+    // Calls the function
     updateTimeBlock();
-    saveEvent();
 
     function saveEvent(){
         // Listens for when save button is clicked
@@ -40,8 +39,27 @@ $(function () {
 
             // Sets and stores hour key and description value in local storage
             localStorage.setItem(hour, description);
-        })
-
+        });
     }
+
+    function loadEvent() {
+        // Loads event from local storage
+        $('.time-block').each(function() {
+            const savedHour = $(this).attr('id').split('-')[1];
+            const savedEvent = localStorage.getItem(savedHour);
+
+            // Displays event if it's not empty
+            if(savedEvent) {
+                $(this).find('.description').val(savedEvent);
+            }
+        });
+    }
+
+    // Calls the functions
+    saveEvent();
+    loadEvent();
+
+    // Refreshes and updates time block colors every minute
+    setInterval(updateTimeBlock, 60000);
 
 });
