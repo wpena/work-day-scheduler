@@ -10,7 +10,7 @@ N/A
 Open the website and enter some event inside any of the time blocks displayed on the page. Click the save button on the right side of the block to save your schedule. This will keep the event saved to that specific block. It is color-coded, with grey representing past events, red for current events, and green for future events.
 
 ## Result
-Below is an example of the quiz.\
+Below is an example of the Work Day Scheduler.\
 ![work-day-scheduler-result](https://github.com/wpena/work-day-scheduler/assets/38634790/ca53aa24-b04c-4011-a07d-f0837961d50d)
 
 
